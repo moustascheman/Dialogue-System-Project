@@ -1,0 +1,17 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/DialogueSystem/Editor/CustomInspectors/USS/DialogueNode.uss?fileID=7433441132597879392&amp;guid=67c25d6f02b961f44b07b4cc9c77db5d&amp;type=3#DialogueNode" />
+    <engine:VisualElement name="Root" style="flex-grow: 1;">
+        <engine:VisualElement name="HeaderBox" class="Header_Box">
+            <engine:Label name="DialogueNodeIdLabel" text="Label" binding-path="NodeId" />
+            <engine:Button name="NodeIdEditBtn" text="Edit" parse-escape-sequences="true" />
+        </engine:VisualElement>
+        <engine:VisualElement name="EditBox" class="HeaderUpdate HeaderHide">
+            <engine:TextField binding-path="NodeId" />
+            <engine:VisualElement class="buttonRow_centered">
+                <engine:Button name="NodeIdEditConfirmBtn" text="Confirm" />
+            </engine:VisualElement>
+        </engine:VisualElement>
+        <engine:VisualElement name="ChoiceList" style="flex-grow: 1;" />
+        <engine:Button text="Add Choice" name="AddChoice" />
+    </engine:VisualElement>
+</engine:UXML>

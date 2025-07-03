@@ -1,0 +1,6 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <engine:VisualElement name="Container" style="flex-grow: 1; flex-basis: 80px; flex-direction: row;">
+        <editor:PropertyField name="ChoiceField" style="flex-shrink: initial; flex-basis: 0; flex-grow: 5;" />
+        <engine:Button text="Remove" style="flex-basis: initial; max-height: 100px; align-self: center;" />
+    </engine:VisualElement>
+</engine:UXML>
