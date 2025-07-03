@@ -17,6 +17,11 @@ public class DialogueChoicePropertyDrawer : PropertyDrawer
         ChoiceText.label = "Choice Text:";
         ChoiceText.BindProperty(so.FindProperty("ChoiceText"));
         root.Add(ChoiceText);
+        PropertyField NextNode = new PropertyField();
+        NextNode.label = "Connected Node:";
+        NextNode.BindProperty(so.FindProperty("nextNode"));
+        root.Add(NextNode);
+
         return root;
     }
 

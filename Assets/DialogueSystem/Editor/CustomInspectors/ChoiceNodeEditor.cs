@@ -74,10 +74,11 @@ public class ChoiceNodeEditor : Editor
             
 
             Button deleteButton = Container.Q<Button>();
-            PropertyField choiceField = Container.Q<PropertyField>();
+            PropertyField choiceField = Container.Q<PropertyField>("ChoiceField");
             string bindingPath = $"choices.Array.data[{i}]";
             serializedObject.Update();
             choiceField.BindProperty(serializedObject.FindProperty(bindingPath));
+
 
             deleteButton.text = "Delete";
             deleteButton.RegisterCallback<ClickEvent>((evt) => DeleteChoice(choice));
