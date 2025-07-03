@@ -11,6 +11,7 @@
                 <engine:Button name="NodeIdEditConfirmBtn" text="Confirm" />
             </engine:VisualElement>
         </engine:VisualElement>
+        <engine:ListView binding-path="choices" name="ChoiceView" enabled="true" allow-add="false" allow-remove="false" reorderable="true" show-bound-collection-size="false" />
         <engine:VisualElement name="ChoiceList" style="flex-grow: 1;" />
         <engine:Button text="Add Choice" name="AddChoice" />
     </engine:VisualElement>

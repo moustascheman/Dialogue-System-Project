@@ -2,19 +2,23 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
-/*
+
+
 [CustomPropertyDrawer(typeof(DialogueChoice))]
 public class DialogueChoicePropertyDrawer : PropertyDrawer
 {
     public VisualTreeAsset ChoiceTemplate;
     public override VisualElement CreatePropertyGUI(SerializedProperty property)
     {
-        VisualElement root = new VisualElement();
-        ChoiceTemplate.CloneTree(root);
+        SerializedObject so = new(property.objectReferenceValue);
 
+        VisualElement root = new VisualElement();
+        TextField ChoiceText = new TextField();
+        ChoiceText.label = "Choice Text:";
+        ChoiceText.BindProperty(so.FindProperty("ChoiceText"));
+        root.Add(ChoiceText);
         return root;
     }
 
 
 }
-*/

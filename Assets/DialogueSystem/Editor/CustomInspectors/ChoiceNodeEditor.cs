@@ -4,6 +4,7 @@ using UnityEditor.UIElements;
 using UnityEditor;
 using System.Linq;
 using System;
+using Unity.Properties;
 
 [CustomEditor(typeof(ChoiceNode))]
 public class ChoiceNodeEditor : Editor
@@ -25,6 +26,8 @@ public class ChoiceNodeEditor : Editor
 
     private VisualElement choiceList;
 
+
+    private SerializedObject so;
     void OnEnable()
     {
         _choiceNode = target as ChoiceNode;
@@ -32,9 +35,11 @@ public class ChoiceNodeEditor : Editor
 
     public override VisualElement CreateInspectorGUI()
     {
+
+        so = serializedObject;
         VisualElement root = new VisualElement();
         markup.CloneTree(root);
-
+        
         editNameBtn = root.Q<Button>("NodeIdEditBtn");
         confirmNameBtn = root.Q<Button>("NodeIdEditConfirmBtn");
         headerBox = root.Q<VisualElement>("HeaderBox");
@@ -42,6 +47,7 @@ public class ChoiceNodeEditor : Editor
         editNameBtn.RegisterCallback<ClickEvent>(OnEditButtonClick);
         confirmNameBtn.RegisterCallback<ClickEvent>(OnEditConfirm);
         choiceList = root.Q<VisualElement>("ChoiceList");
+        
         BuildDialogueChoiceList(choiceList);
 
         AddChoiceBtn = root.Q<Button>("AddChoice");
@@ -59,15 +65,25 @@ public class ChoiceNodeEditor : Editor
     private void BuildDialogueChoiceList(VisualElement choiceList)
     {
         choiceList.Clear();
+        int i = 0;
         foreach (DialogueChoice choice in _choiceNode.choices)
         {
+            
             VisualElement Container = new VisualElement();
             ChoicePanel.CloneTree(Container);
-            PropertyField choiceProp = Container.Q<PropertyField>();
+            
+
             Button deleteButton = Container.Q<Button>();
+            PropertyField choiceField = Container.Q<PropertyField>();
+            string bindingPath = $"choices.Array.data[{i}]";
+            serializedObject.Update();
+            choiceField.BindProperty(serializedObject.FindProperty(bindingPath));
+
             deleteButton.text = "Delete";
             deleteButton.RegisterCallback<ClickEvent>((evt) => DeleteChoice(choice));
             choiceList.Add(Container);
+            i++;
+            
         }
 
         
@@ -89,11 +105,11 @@ public class ChoiceNodeEditor : Editor
 
     private void DeleteChoice(DialogueChoice choice)
     {
-        Debug.Log("HIT");
         _choiceNode.choices.Remove(choice);
         AssetDatabase.RemoveObjectFromAsset(choice);
         UnityEditor.EditorUtility.SetDirty(choice);
         AssetDatabase.SaveAssets();
+        so.Update();
         BuildDialogueChoiceList(choiceList);
     }
 
@@ -104,6 +120,7 @@ public class ChoiceNodeEditor : Editor
         newChoice.name = "DialogueChoice_" + GUID.Generate();
         AssetDatabase.AddObjectToAsset(newChoice, _choiceNode);
         AssetDatabase.SaveAssetIfDirty(_choiceNode);
+        so.Update();
         _choiceNode.choices.Add(newChoice);
         BuildDialogueChoiceList(choiceList);
     }
