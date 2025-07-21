@@ -6,7 +6,7 @@ using System.Linq;
 using System;
 using Unity.Properties;
 
-[CustomEditor(typeof(ChoiceNode))]
+/*[CustomEditor(typeof(ChoiceNode))]
 public class ChoiceNodeEditor : Editor
 {
     private ChoiceNode _choiceNode;
@@ -66,12 +66,13 @@ public class ChoiceNodeEditor : Editor
     {
         choiceList.Clear();
         int i = 0;
+        Debug.Log(_choiceNode);
         foreach (DialogueChoice choice in _choiceNode.choices)
         {
-            
+
             VisualElement Container = new VisualElement();
             ChoicePanel.CloneTree(Container);
-            
+
 
             Button deleteButton = Container.Q<Button>();
             PropertyField choiceField = Container.Q<PropertyField>("ChoiceField");
@@ -84,7 +85,7 @@ public class ChoiceNodeEditor : Editor
             deleteButton.RegisterCallback<ClickEvent>((evt) => DeleteChoice(choice));
             choiceList.Add(Container);
             i++;
-            
+
         }
 
         
@@ -126,4 +127,4 @@ public class ChoiceNodeEditor : Editor
         BuildDialogueChoiceList(choiceList);
     }
 
-}
+}*/

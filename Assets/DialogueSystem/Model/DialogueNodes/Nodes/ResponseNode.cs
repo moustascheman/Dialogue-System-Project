@@ -1,13 +1,14 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Resp Node", menuName = "Scriptable Objects/DialogueSystem/Debug/ResponseNode")]
+[Serializable]
 public class ResponseNode : DialogueNode
 {
     [SerializeField]
     private string textValue;
 
-    [SerializeField]
+    [SerializeReference]
     private DialogueNode nextNode;
 
 

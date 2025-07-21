@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "DialogueChoice", menuName = "Scriptable Objects/DialogueChoice")]
-public class DialogueChoice : ScriptableObject
+[System.Serializable]
+public class DialogueChoice
 {
-    [SerializeField]
+    [SerializeReference]
     private DialogueNode nextNode;
     public bool hidden = false;
 

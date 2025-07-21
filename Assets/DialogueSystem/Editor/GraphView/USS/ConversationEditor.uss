@@ -1,0 +1,9 @@
+ConvoGraphView {
+    flex-grow: 1
+}
+
+.Response-Node {
+    background-color: white; 
+    border-color: green;
+    border-width: <length>{1,4};
+}

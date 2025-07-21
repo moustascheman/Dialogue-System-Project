@@ -4,7 +4,7 @@ using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
 
-[CustomPropertyDrawer(typeof(DialogueChoice))]
+//[CustomPropertyDrawer(typeof(DialogueChoice))]
 public class DialogueChoicePropertyDrawer : PropertyDrawer
 {
     public VisualTreeAsset ChoiceTemplate;

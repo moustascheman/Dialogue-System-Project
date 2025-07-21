@@ -3,17 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-
-public abstract class DialogueNode : ScriptableObject
+[Serializable]
+public abstract class DialogueNode
 {
 
     [SerializeField]
-    public String NodeId;
+    public string NodeId => guid;
 
 
     //public List<NodeTags> attachedTags;
 
     private string guid = Guid.NewGuid().ToString();
+    public string EditorId;
+
+    public Vector2 pos;
 
 
 

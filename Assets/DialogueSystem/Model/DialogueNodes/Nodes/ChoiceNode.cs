@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Choice Node", menuName = "Scriptable Objects/DialogueSystem/Debug/ChoiceNode")]
+[DialogueNode("Choice Node")]
+[Serializable]
 public class ChoiceNode : DialogueNode
 {
 
