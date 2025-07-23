@@ -1,0 +1,22 @@
+
+
+.content-box{
+    background-color: #313131;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+
+.ResponseText {
+    width: 400px;
+    height: 150px;
+}
+
+.ResponseText Label {
+    min-width: 100px;
+}
+
+.content-box TextField {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}

@@ -14,7 +14,7 @@ public abstract class DialogueNode
     //public List<NodeTags> attachedTags;
 
     private string guid = Guid.NewGuid().ToString();
-    public string EditorId;
+    public string EditorId = "New Node";
 
     public Vector2 pos;
 

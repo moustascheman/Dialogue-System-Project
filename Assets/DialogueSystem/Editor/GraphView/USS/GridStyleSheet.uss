@@ -10,3 +10,7 @@ GridBackground {
     margin-left: 0;
     padding-left: 10px;
 }
+
+.horizontal {
+    height: auto;
+}

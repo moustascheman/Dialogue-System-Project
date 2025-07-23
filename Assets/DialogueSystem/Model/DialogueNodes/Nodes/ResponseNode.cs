@@ -6,10 +6,10 @@ using UnityEngine;
 public class ResponseNode : DialogueNode
 {
     [SerializeField]
-    private string textValue;
+    public string textValue;
 
     [SerializeReference]
-    private DialogueNode nextNode;
+    public DialogueNode nextNode;
 
 
     public override DialogueNode GetNextNode(int choice)

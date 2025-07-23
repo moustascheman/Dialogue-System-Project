@@ -32,6 +32,9 @@ public partial class ConvoGraphview : GraphView
         this.AddManipulator(new SelectionDragger());
         this.AddManipulator(new RectangleSelector());
 
+        Blackboard bb = new Blackboard(this);
+        Add(bb);
+
         searchProvider = ConversationGraphSearchProvider.CreateInstance<ConversationGraphSearchProvider>();
         searchProvider.graphview = this;
         this.nodeCreationRequest = ShowSearchWindow;
@@ -60,7 +63,22 @@ public partial class ConvoGraphview : GraphView
                 RemoveElement(elem);
                 obj.Update();
             });
+            graphViewChange.elementsToRemove.OfType<UnityEditor.Experimental.GraphView.Edge>().ToList().ForEach(edge =>
+            {
+                DialogueGraphNode dNode = edge.output.node as DialogueGraphNode;
+                dNode.DisconnectPort(edge.output);
+            });
             //RenderExistingNodes();
+        }
+        if (graphViewChange.edgesToCreate != null)
+        {
+            foreach (UnityEditor.Experimental.GraphView.Edge edge in graphViewChange.edgesToCreate)
+            {
+                Port inputPort = edge.input;
+                Port outputPort = edge.output;
+                DialogueGraphNode outputNode = outputPort.node as DialogueGraphNode;
+                outputNode.ConnectNodeWithPort(outputPort, inputPort);
+            }
         }
         return graphViewChange;
     }
@@ -123,6 +141,21 @@ public partial class ConvoGraphview : GraphView
             NodeInfoContainer cont = getContainerForType(t);
             AddNodetoGraph(cont, node);
         }
+        //Generate edges
+
+        foreach (DialogueGraphNode gNode in nodeList)
+        {
+            GenerateEdges(gNode);
+        }
+    }
+
+
+    private void GenerateEdges(DialogueGraphNode graphNode)
+    {
+        foreach (var edge in graphNode.DrawEdges(nodeDict))
+        {
+            this.Add(edge);
+        }
     }
 
     private NodeInfoContainer getContainerForType(Type t)
@@ -143,7 +176,7 @@ public partial class ConvoGraphview : GraphView
     //TODO: Set this up so that dialogue nodes can connect to other dialogue nodes and each other
     public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)
     {
-        return base.GetCompatiblePorts(startPort, nodeAdapter);
+        return ports.ToList().Where(port => port.direction != startPort.direction && port != startPort && port.portType == startPort.portType).ToList();
     }
     
 }

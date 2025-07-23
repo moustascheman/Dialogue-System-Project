@@ -14,17 +14,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ConversationName: 
   nodes:
-  - rid: 3045769740623544415
+  - rid: 3045769764520853565
+  - rid: 3045769764520853566
   references:
     version: 2
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 3045769740623544415
+    - rid: 3045769764520853565
       type: {class: ResponseNode, ns: , asm: Assembly-CSharp}
       data:
-        EditorId: 
-        pos: {x: 293, y: 163}
+        EditorId: New Node
+        pos: {x: 286, y: 222}
         textValue: 
         nextNode:
           rid: -2
+    - rid: 3045769764520853566
+      type: {class: ChoiceNode, ns: , asm: Assembly-CSharp}
+      data:
+        EditorId: 
+        pos: {x: 355, y: 418}
+        choices:
+        - nextNode:
+            rid: -2
+          hidden: 0
+          ChoiceText: 
+          conditionalList:
+            conditions: []

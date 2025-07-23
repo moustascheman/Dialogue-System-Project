@@ -28,7 +28,7 @@ public class ConversationEditorWindow : EditorWindow
         wnd.titleContent = new GUIContent(target.name + " - Conversation Editor");
         var graph = wnd.rootVisualElement.Q<ConvoGraphview>();
         graph.obj = new SerializedObject(target);
-        Debug.Log(graph.obj);
+        
         graph.convo = target;
         //Really dislike this. I should probably call the graph constructor here instead of doing this
         graph.RenderExistingNodes();
