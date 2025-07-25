@@ -12,7 +12,6 @@ public class ResponseGraphNode : DialogueGraphNode
 
     [SerializeField]
     private VisualTreeAsset m_VisualTreeAsset;
-    private SerializedObject so;
 
     private Port outputPort;
     public ResponseGraphNode(ResponseNode node) : base(node)
@@ -36,7 +35,6 @@ public class ResponseGraphNode : DialogueGraphNode
         {
 
         });
-        titleButtonContainer.Add(isStartNode);
         TextField textField = new TextField("Response Text:");
         textField.value = thisNode.textValue;
         textField.RegisterValueChangedCallback(e =>
@@ -57,7 +55,7 @@ public class ResponseGraphNode : DialogueGraphNode
         textField.AddToClassList("ResponseText");
         VisualElement contentBox = new VisualElement();
         contentBox.name = "ContentBox";
-
+        contentBox.Add(isStartNode);
         contentBox.Add(editorIdField);
         contentBox.Add(textField);
 
@@ -69,9 +67,9 @@ public class ResponseGraphNode : DialogueGraphNode
 
 
 
-        Port input = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Multi, typeof(Node));
+        Port input = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Multi, typeof(DialogueGraphNode));
         inputPort = input;
-        outputPort = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(Node));
+        outputPort = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(DialogueGraphNode));
         this.inputContainer.Add(input);
         //this.outputContainer.Add(output);
         contentBox.Add(outputPort);
@@ -96,7 +94,7 @@ public class ResponseGraphNode : DialogueGraphNode
 
     public override List<Edge> DrawEdges(Dictionary<string, DialogueGraphNode> nodeDict)
     {
-        List<Edge> edgeList = new List<Edge>();
+       
         ResponseNode thisNode = node as ResponseNode;
         if (thisNode.nextNode != null)
         {
@@ -108,5 +106,11 @@ public class ResponseGraphNode : DialogueGraphNode
 
         }
         return edgeList;
+    }
+
+    public override void RemoveIncomingConnections(Port output)
+    {
+        ResponseNode rNode = node as ResponseNode;
+        rNode.nextNode = null;
     }
 }

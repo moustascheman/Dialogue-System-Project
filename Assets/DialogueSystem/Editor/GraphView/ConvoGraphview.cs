@@ -32,9 +32,7 @@ public partial class ConvoGraphview : GraphView
         this.AddManipulator(new SelectionDragger());
         this.AddManipulator(new RectangleSelector());
 
-        Blackboard bb = new Blackboard(this);
-        Add(bb);
-
+        
         searchProvider = ConversationGraphSearchProvider.CreateInstance<ConversationGraphSearchProvider>();
         searchProvider.graphview = this;
         this.nodeCreationRequest = ShowSearchWindow;
@@ -52,15 +50,11 @@ public partial class ConvoGraphview : GraphView
     {
         if (graphViewChange.elementsToRemove != null)
         {
-            Undo.RecordObject(obj.targetObject, "Removed Node");
+            //Undo.RecordObject(obj.targetObject, "Removed Node");
             graphViewChange.elementsToRemove.OfType<DialogueGraphNode>().ToList()
             .ForEach(elem =>
             {
-                Debug.Log("NODE REMOVED");
-                convo.nodes.Remove(elem.node);
-                nodeList.Remove(elem);
-                nodeDict.Remove(elem.id);
-                RemoveElement(elem);
+                RemoveNode(elem);
                 obj.Update();
             });
             graphViewChange.elementsToRemove.OfType<UnityEditor.Experimental.GraphView.Edge>().ToList().ForEach(edge =>
@@ -103,7 +97,25 @@ public partial class ConvoGraphview : GraphView
 
     }
 
+    private void RemoveNode(DialogueGraphNode node)
+    {
 
+        foreach (UnityEditor.Experimental.GraphView.Edge edge in node.inputPort.connections)
+        {
+            DialogueGraphNode connected = edge.output.node as DialogueGraphNode;
+            connected.DisconnectPort(edge.output);
+            //Remove(edge);
+        }
+        
+        convo.nodes.Remove(node.node);
+        nodeList.Remove(node);
+        nodeDict.Remove(node.id);
+        RemoveElement(node);
+
+    }
+
+
+    //TODO: Need to redo this somehow so that it's more easily extensible for new node types
     private void AddNodetoGraph(NodeInfoContainer cont, DialogueNode node)
     {
         string typename = cont.title;

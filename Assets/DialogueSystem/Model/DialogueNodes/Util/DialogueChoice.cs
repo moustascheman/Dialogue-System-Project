@@ -5,17 +5,25 @@ using UnityEngine;
 public class DialogueChoice
 {
     [SerializeReference]
-    private DialogueNode nextNode;
+    public DialogueNode nextNode;
     public bool hidden = false;
 
     private string DialogueChoiceId;
 
     public string ChoiceText = "PLACEHOLDER";
 
-    [SerializeField]
+
+
+
+    [SerializeReference]
     private ConditionalList conditionalList;
 
-    
+    public DialogueChoice()
+    {
+        ChoiceText = "PLACEHOLDER";
+    }    
+
+
 
 
     public DialogueNode GetNextNode()

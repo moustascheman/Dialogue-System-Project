@@ -1,0 +1,20 @@
+.content-box {
+    background-color: #313131;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+
+.choice-element {
+    align-items: center;
+    flex-direction: row;
+}
+
+.choice-element .choice-text {
+    min-width: 380px;
+}
+
+.choice-element .delete-button {
+    background-color: #D90000;
+    -unity-font-style: bold;
+}

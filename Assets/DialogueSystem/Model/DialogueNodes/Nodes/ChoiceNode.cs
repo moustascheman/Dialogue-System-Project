@@ -8,8 +8,8 @@ using UnityEngine;
 public class ChoiceNode : DialogueNode
 {
 
-    
-    public List<DialogueChoice> choices;
+    [SerializeReference]
+    public List<DialogueChoice> choices = new List<DialogueChoice>();
 
 
     public override DialogueNode GetNextNode(int choice)
@@ -35,6 +35,13 @@ public class ChoiceNode : DialogueNode
     public override string GetResponseText()
     {
         return null;
+    }
+
+    public DialogueChoice AddChoice()
+    {
+        DialogueChoice c = new DialogueChoice();
+        choices.Add(c);
+        return c;
     }
 
     

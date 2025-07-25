@@ -14,6 +14,8 @@ public abstract class DialogueGraphNode : Node
 
     public string id => m_Node.NodeId;
 
+    public List<Edge> edgeList = new List<Edge>();
+
     public DialogueGraphNode(DialogueNode node)
     {
         this.AddToClassList("dialogue-graph-node");
@@ -26,4 +28,6 @@ public abstract class DialogueGraphNode : Node
     public abstract List<Edge> DrawEdges(Dictionary<string, DialogueGraphNode> nodeDict);
 
     public abstract void DisconnectPort(Port output);
+
+    public abstract void RemoveIncomingConnections(Port output);
 }
