@@ -24,12 +24,13 @@ public class ConversationEditorWindow : EditorWindow
 
     public static void Open(Conversation target)
     {
-        ConversationEditorWindow wnd = GetWindow<ConversationEditorWindow>();
-        wnd.titleContent = new GUIContent(target.name + " - Conversation Editor");
-        var graph = wnd.rootVisualElement.Q<ConvoGraphview>();
-        graph.obj = new SerializedObject(target);
+          ConversationEditorWindow wnd = GetWindow<ConversationEditorWindow>();
+          wnd.titleContent = new GUIContent(target.name + " - Conversation Editor");
+          var graph = wnd.rootVisualElement.Q<ConvoGraphview>();
+          graph.obj = new SerializedObject(target);
+
+          graph.convo = target;
         
-        graph.convo = target;
         //Really dislike this. I should probably call the graph constructor here instead of doing this
         graph.RenderExistingNodes();
     }

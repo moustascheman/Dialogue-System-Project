@@ -50,18 +50,18 @@ public partial class ConvoGraphview : GraphView
     {
         if (graphViewChange.elementsToRemove != null)
         {
-            //Undo.RecordObject(obj.targetObject, "Removed Node");
+            Undo.RecordObject(obj.targetObject, "Removed Node");
             graphViewChange.elementsToRemove.OfType<DialogueGraphNode>().ToList()
             .ForEach(elem =>
             {
                 RemoveNode(elem);
-                obj.Update();
             });
             graphViewChange.elementsToRemove.OfType<UnityEditor.Experimental.GraphView.Edge>().ToList().ForEach(edge =>
             {
                 DialogueGraphNode dNode = edge.output.node as DialogueGraphNode;
                 dNode.DisconnectPort(edge.output);
             });
+            obj.Update();
             //RenderExistingNodes();
         }
         if (graphViewChange.edgesToCreate != null)
