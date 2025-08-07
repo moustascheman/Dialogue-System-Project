@@ -13,6 +13,8 @@ public class ChoiceElement : VisualElement
     public Port outPort;
 
     public Action deleteCallback;
+
+    public Action changeCallback;
     public ChoiceElement(DialogueChoice thisChoice, ChoiceGraphNode owningNode)
     {
         m_Choice = thisChoice;
@@ -26,6 +28,7 @@ public class ChoiceElement : VisualElement
         choiceText.RegisterValueChangedCallback(e =>
         {
             this.choice.ChoiceText = e.newValue;
+            changeCallback();
         });
 
         UnityEngine.UIElements.Button editCondButton = new UnityEngine.UIElements.Button();
@@ -36,7 +39,7 @@ public class ChoiceElement : VisualElement
         UnityEngine.UIElements.Button deleteButton = new UnityEngine.UIElements.Button();
         deleteButton.text = "🗑";
         deleteButton.AddToClassList("delete-button");
-        deleteButton.RegisterCallback<ClickEvent>( e =>
+        deleteButton.RegisterCallback<ClickEvent>(e =>
         {
             deleteCallback();
         });

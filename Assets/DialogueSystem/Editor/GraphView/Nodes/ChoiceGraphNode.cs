@@ -12,7 +12,7 @@ public class ChoiceGraphNode : DialogueGraphNode
 
     private ChoiceNode cNode;
 
-    public ChoiceGraphNode(ChoiceNode node) : base(node)
+    public ChoiceGraphNode(ChoiceNode node, bool startingNode) : base(node, startingNode)
     {
         cNode = node;
         StyleSheet styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/DialogueSystem/Editor/GraphView/USS/ChoiceGraphNode.uss");
@@ -24,9 +24,10 @@ public class ChoiceGraphNode : DialogueGraphNode
         this.title = cNode.EditorId;
 
         Toggle isStartNode = new Toggle("Start Node?");
+        isStartNode.value = startingNode;
         isStartNode.RegisterValueChangedCallback(e =>
         {
-
+            OnStartingNodeStatusChange();
         });
 
         TextField editorIdField = new TextField("Editor ID:");
@@ -35,6 +36,7 @@ public class ChoiceGraphNode : DialogueGraphNode
         {
             this.title = e.newValue;
             cNode.EditorId = e.newValue;
+            OnValueChange();
         });
         contentBox.Add(isStartNode);
         contentBox.Add(editorIdField);
@@ -54,6 +56,10 @@ public class ChoiceGraphNode : DialogueGraphNode
             {
                 cNode.choices.Remove(choice);
                 choiceList.Remove(elm);
+                OnValueChange();
+            };
+            elm.changeCallback = () => {
+                OnValueChange();
             };
             choiceList.Add(elm);
             choiceElements.Add(elm);
@@ -72,7 +78,8 @@ public class ChoiceGraphNode : DialogueGraphNode
             {
                 cNode.choices.Remove(c);
                 choiceList.Remove(elm);
-            };    
+            };
+            OnValueChange();    
         });
         choiceContainer.Add(addChoiceBtn);
         contentBox.Add(choiceContainer);

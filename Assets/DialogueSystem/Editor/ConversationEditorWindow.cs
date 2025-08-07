@@ -8,7 +8,7 @@ public class ConversationEditorWindow : EditorWindow
 {
     [SerializeField]
     private VisualTreeAsset m_VisualTreeAsset = default;
-    private Conversation conversation;
+    private Conversation currentConversation;
 
     public void CreateGUI()
     {
@@ -17,21 +17,60 @@ public class ConversationEditorWindow : EditorWindow
         m_VisualTreeAsset.CloneTree(root);
         var graph = this.rootVisualElement.Q<ConvoGraphview>();
         graph.window = this;
-        
 
 
+
+    }
+
+    private void OnGUI()
+    {
+        if (EditorUtility.IsDirty(currentConversation))
+        {
+            hasUnsavedChanges = true;
+        }
+        else
+        {
+            hasUnsavedChanges = false;
+        }
+    }
+
+    private void OnEnable()
+    {
+        if (currentConversation != null)
+        {
+            RenderGraph();
+        }
     }
 
     public static void Open(Conversation target)
     {
-          ConversationEditorWindow wnd = GetWindow<ConversationEditorWindow>();
-          wnd.titleContent = new GUIContent(target.name + " - Conversation Editor");
-          var graph = wnd.rootVisualElement.Q<ConvoGraphview>();
-          graph.obj = new SerializedObject(target);
+        ConversationEditorWindow[] windows = Resources.FindObjectsOfTypeAll<ConversationEditorWindow>();
+        bool WinExists = false;
+        foreach (ConversationEditorWindow win in windows)
+        {
+            if (win.currentConversation == target)
+            {
+                win.Focus();
+                WinExists = true;
+            }
+        }
+        if (!WinExists)
+        {
+            ConversationEditorWindow window = CreateWindow<ConversationEditorWindow>(typeof(ConversationEditorWindow), typeof(SceneView));
+            window.titleContent = new GUIContent($"Conversation Editor - {target.name}");
+            window.currentConversation = target;
+            window.RenderGraph();
+        }
 
-          graph.convo = target;
-        
-        //Really dislike this. I should probably call the graph constructor here instead of doing this
+    }
+
+    private void RenderGraph()
+    {
+        var graph = this.rootVisualElement.Q<ConvoGraphview>();
+        graph.obj = new SerializedObject(currentConversation);
+        graph.convo = currentConversation;
         graph.RenderExistingNodes();
     }
 }
+
+

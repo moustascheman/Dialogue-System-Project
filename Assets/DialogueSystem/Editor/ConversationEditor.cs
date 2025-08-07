@@ -23,7 +23,6 @@ public class ConversationEditor : Editor
 
         root.Add(nodeList);
 
-
         return root;   
     }
 }

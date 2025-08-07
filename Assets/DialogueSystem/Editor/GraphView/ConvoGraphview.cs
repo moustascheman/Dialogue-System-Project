@@ -74,6 +74,7 @@ public partial class ConvoGraphview : GraphView
                 outputNode.ConnectNodeWithPort(outputPort, inputPort);
             }
         }
+        EditorUtility.SetDirty(convo);
         return graphViewChange;
     }
 
@@ -104,7 +105,6 @@ public partial class ConvoGraphview : GraphView
         {
             DialogueGraphNode connected = edge.output.node as DialogueGraphNode;
             connected.DisconnectPort(edge.output);
-            //Remove(edge);
         }
         
         convo.nodes.Remove(node.node);
@@ -121,17 +121,21 @@ public partial class ConvoGraphview : GraphView
         string typename = cont.title;
 
         DialogueGraphNode d_node = null;
+        
 
         if (typename == "Response Node")
         {
-            d_node = new ResponseGraphNode(node as ResponseNode);
+            d_node = new ResponseGraphNode(node as ResponseNode, convo.IsStartNode(node));
 
         }
         else if (typename == "Choice Node")
         {
-            d_node = new ChoiceGraphNode(node as ChoiceNode);
+            d_node = new ChoiceGraphNode(node as ChoiceNode, convo.IsStartNode(node));
         }
         d_node.SetPosition(new Rect(node.pos, new UnityEngine.Vector2()));
+        d_node.ValueChangedEvent += NodeValueChangedEvent;
+
+        d_node.StartingNodeStatusChangeEvent += ChangeStartingNodes;
 
         if (!nodeDict.ContainsKey(d_node.id))
         {
@@ -141,12 +145,26 @@ public partial class ConvoGraphview : GraphView
         }
     }
 
+    private void ChangeStartingNodes(DialogueNode node)
+    {
+        if (!convo.IsStartNode(node))
+        {
+            convo.AddStartNode(node);
+        }
+        else
+        {
+            convo.RemoveStartNode(node);
+            EditorUtility.SetDirty(convo);
+        }
+    }
+
+    private void NodeValueChangedEvent(object sender, EventArgs e)
+    {
+        EditorUtility.SetDirty(convo);
+    }
+
     public void RenderExistingNodes()
     {
-        //this.Clear();
-        // DeleteElements(graphElements);
-        //  nodeDict.Clear();
-        //  nodeList.Clear();
         foreach (DialogueNode node in convo.nodes)
         {
             Type t = node.GetType();

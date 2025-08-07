@@ -19,6 +19,9 @@ MonoBehaviour:
   - rid: 3045769832942796892
   - rid: 3045769832942796893
   - rid: 3045769832942796899
+  - rid: 7965224148489470011
+  entryNodes:
+  - rid: 3045769832942796859
   references:
     version: 2
     RefIds:
@@ -63,14 +66,14 @@ MonoBehaviour:
         nextNode:
           rid: 3045769832942796892
         hidden: 0
-        ChoiceText: AAA
+        ChoiceText: AAAaaa
         conditionalList:
           rid: -2
     - rid: 3045769832942796895
       type: {class: DialogueChoice, ns: , asm: Assembly-CSharp}
       data:
         nextNode:
-          rid: 3045769832942796897
+          rid: -2
         hidden: 0
         ChoiceText: BBB
         conditionalList:
@@ -81,17 +84,9 @@ MonoBehaviour:
         nextNode:
           rid: 3045769832942796899
         hidden: 0
-        ChoiceText: CCC
+        ChoiceText: FFF
         conditionalList:
           rid: -2
-    - rid: 3045769832942796897
-      type: {class: ResponseNode, ns: , asm: Assembly-CSharp}
-      data:
-        EditorId: 683
-        pos: {x: 2162.6843, y: -480.5965}
-        textValue: BBB Selected
-        nextNode:
-          rid: 3045769832942796893
     - rid: 3045769832942796899
       type: {class: ChoiceNode, ns: , asm: Assembly-CSharp}
       data:
@@ -103,8 +98,16 @@ MonoBehaviour:
       type: {class: DialogueChoice, ns: , asm: Assembly-CSharp}
       data:
         nextNode:
-          rid: -2
+          rid: 7965224148489470011
         hidden: 0
         ChoiceText: END
         conditionalList:
+          rid: -2
+    - rid: 7965224148489470011
+      type: {class: ResponseNode, ns: , asm: Assembly-CSharp}
+      data:
+        EditorId: EndNodeReal
+        pos: {x: 3340.6018, y: 996.93353}
+        textValue: Goodbye
+        nextNode:
           rid: -2

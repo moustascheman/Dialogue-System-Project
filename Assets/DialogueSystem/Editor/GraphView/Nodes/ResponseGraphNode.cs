@@ -14,7 +14,7 @@ public class ResponseGraphNode : DialogueGraphNode
     private VisualTreeAsset m_VisualTreeAsset;
 
     private Port outputPort;
-    public ResponseGraphNode(ResponseNode node) : base(node)
+    public ResponseGraphNode(ResponseNode node, bool startingNode) : base(node, startingNode)
     {
         //m_VisualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/DialogueSystem/Editor/GraphView/UXML/ResponseNode.uxml");
         //VisualElement root = this;
@@ -31,15 +31,17 @@ public class ResponseGraphNode : DialogueGraphNode
 
         ResponseNode thisNode = node as ResponseNode;
         Toggle isStartNode = new Toggle("Start Node?");
+        isStartNode.value = startingNode;
         isStartNode.RegisterValueChangedCallback(e =>
         {
-
+            OnStartingNodeStatusChange();
         });
         TextField textField = new TextField("Response Text:");
         textField.value = thisNode.textValue;
         textField.RegisterValueChangedCallback(e =>
         {
             thisNode.textValue = e.newValue;
+            OnValueChange();
         });
 
         TextField editorIdField = new TextField("Editor ID:");
@@ -48,6 +50,7 @@ public class ResponseGraphNode : DialogueGraphNode
         {
             this.title = e.newValue;
             thisNode.EditorId = e.newValue;
+            OnValueChange();
         });
 
         textField.multiline = true;
