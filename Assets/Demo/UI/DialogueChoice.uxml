@@ -1,0 +1,7 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Demo/UI/DialogueChoice.uss?fileID=7433441132597879392&amp;guid=02a6ed82b47dcca4c822b1b456cfce4d&amp;type=3#DialogueChoice" />
+    <ui:VisualElement name="DialogueChoiceContainer" class="ChoiceContainer" style="flex-grow: 1;">
+        <ui:Label text="[Tag]" name="DialogueTag" />
+        <ui:Label text="Hello! How are you?" name="ChoiceText" class="ChoiceText" />
+    </ui:VisualElement>
+</ui:UXML>

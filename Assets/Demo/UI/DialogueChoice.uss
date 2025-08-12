@@ -1,0 +1,8 @@
+.ChoiceContainer {
+    flex-direction: row;
+}
+
+
+.ChoiceText {
+    flex-grow: 1;
+}

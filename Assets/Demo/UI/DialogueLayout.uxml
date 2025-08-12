@@ -1,0 +1,14 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Demo/UI/DemoUI.uss?fileID=7433441132597879392&amp;guid=a0d2abfd6cbea4441b72318104b3651c&amp;type=3#DemoUI" />
+    <ui:VisualElement name="MainContainer" class="MainContainer" style="flex-grow: 1; height: 80%;">
+        <ui:VisualElement name="DialogueBox" enabled="true" class="dialogue-box">
+            <ui:VisualElement name="ResponseBox" class="ResponseBox" style="flex-grow: 1;">
+                <ui:Label text="&quot;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." name="ResponseText" class="ResponseText" style="display: flex;" />
+                <ui:VisualElement name="ContinueButtonContainer" style="flex-grow: 1;">
+                    <ui:Button name="ContinueButton" text="CONTINUE" class="ContinueButton" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="ChoiceBox" class="ChoiceBox Hidden" style="flex-grow: 1;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
