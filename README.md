@@ -7,3 +7,6 @@ This Editor includes branching and Dialogue Choices and comes with a basic examp
 
 
 ![Screenshot of the editor](screenshots/editor.jpg)
+
+The Demo is available on Itch.io!
+Try it out [here](https://moustascheman.itch.io/dialogue-system-demo)!
