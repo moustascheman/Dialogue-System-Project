@@ -1,0 +1,220 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f97ed4d515e578b48a81e4e82998f867, type: 3}
+  m_Name: DemoConversation
+  m_EditorClassIdentifier: 
+  ConversationName: 
+  nodes:
+  - rid: 7965224264890580992
+  - rid: 7965224264890580993
+  - rid: 7965224264890580994
+  - rid: 7965224264890580996
+  - rid: 7965224264890580999
+  - rid: 7965224264890581001
+  - rid: 7965224264890581002
+  - rid: 7965224264890581003
+  - rid: 7965224264890581004
+  - rid: 7965224264890581006
+  - rid: 7965224264890581007
+  - rid: 7965224264890581008
+  - rid: 7965224264890581009
+  - rid: 7965224264890581010
+  - rid: 7965224264890581013
+  entryNodes:
+  - rid: 7965224264890580992
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 7965224264890580992
+      type: {class: ResponseNode, ns: , asm: Assembly-CSharp}
+      data:
+        EditorId: DemoEntryNode
+        pos: {x: 276, y: 217}
+        textValue: 'Hello and Welcome!
+
+
+          This is a Demo of my Dialogue
+          System!'
+        nextNode:
+          rid: 7965224264890580993
+    - rid: 7965224264890580993
+      type: {class: ResponseNode, ns: , asm: Assembly-CSharp}
+      data:
+        EditorId: Second Node
+        pos: {x: 971.75006, y: 326.60004}
+        textValue: It is a node-based dialogue system that I made here with UI Toolkit
+        nextNode:
+          rid: 7965224264890580994
+    - rid: 7965224264890580994
+      type: {class: ResponseNode, ns: , asm: Assembly-CSharp}
+      data:
+        EditorId: Third Response Node
+        pos: {x: 1564.0001, y: 365.70004}
+        textValue: It is still in development however so some features may still
+          be missing.
+        nextNode:
+          rid: 7965224264890580996
+    - rid: 7965224264890580996
+      type: {class: ChoiceNode, ns: , asm: Assembly-CSharp}
+      data:
+        EditorId: First Branch
+        pos: {x: 2268.9502, y: 363.40002}
+        choices:
+        - rid: 7965224264890580997
+        - rid: 7965224264890580998
+        - rid: 7965224264890581005
+    - rid: 7965224264890580997
+      type: {class: DialogueChoice, ns: , asm: Assembly-CSharp}
+      data:
+        nextNode:
+          rid: 7965224264890580999
+        hidden: 0
+        ChoiceText: Node-Based?
+        conditionalList:
+          rid: -2
+    - rid: 7965224264890580998
+      type: {class: DialogueChoice, ns: , asm: Assembly-CSharp}
+      data:
+        nextNode:
+          rid: 7965224264890581001
+        hidden: 0
+        ChoiceText: What does it currently Support?
+        conditionalList:
+          rid: -2
+    - rid: 7965224264890580999
+      type: {class: ResponseNode, ns: , asm: Assembly-CSharp}
+      data:
+        EditorId: GraphviewInfoBranch
+        pos: {x: 2912, y: 195}
+        textValue: Yes. This dialogue system is using the GraphView API for the Editor!
+        nextNode:
+          rid: 7965224264890580996
+    - rid: 7965224264890581001
+      type: {class: ResponseNode, ns: , asm: Assembly-CSharp}
+      data:
+        EditorId: DevelopmentStatusBranch
+        pos: {x: 3174, y: 640}
+        textValue: Currently, I have support for Choice Nodes and Response Nodes.
+        nextNode:
+          rid: 7965224264890581002
+    - rid: 7965224264890581002
+      type: {class: ResponseNode, ns: , asm: Assembly-CSharp}
+      data:
+        EditorId: ChoiceNodeInfoBranch
+        pos: {x: 3583, y: 503}
+        textValue: Choice Nodes present you with a list of choices that you can choose
+          from. This can result in branching.
+        nextNode:
+          rid: 7965224264890581003
+    - rid: 7965224264890581003
+      type: {class: ResponseNode, ns: , asm: Assembly-CSharp}
+      data:
+        EditorId: ResponseNodeInfoBranch
+        pos: {x: 4128, y: 598}
+        textValue: Response Nodes present you with a message (a response), like this
+          one.
+        nextNode:
+          rid: 7965224264890581004
+    - rid: 7965224264890581004
+      type: {class: ResponseNode, ns: , asm: Assembly-CSharp}
+      data:
+        EditorId: FuturePlansBranch
+        pos: {x: 4612, y: 480}
+        textValue: I also plan on later implementing other nodes and features such
+          as Conditional Nodes that can be used to conditionally branch between responses
+          and Functional Nodes which can be used to execute game functions
+        nextNode:
+          rid: 7965224264890580996
+    - rid: 7965224264890581005
+      type: {class: DialogueChoice, ns: , asm: Assembly-CSharp}
+      data:
+        nextNode:
+          rid: 7965224264890581006
+        hidden: 0
+        ChoiceText: Can you tell me anything else?
+        conditionalList:
+          rid: -2
+    - rid: 7965224264890581006
+      type: {class: ResponseNode, ns: , asm: Assembly-CSharp}
+      data:
+        EditorId: MoreInfoContinueBranch
+        pos: {x: 3100.4001, y: 867.10004}
+        textValue: Yes. This dialogue system, while still a WIP, is meant to eventually
+          be powerful enough for all sorts of games such as RPGs. I plan on eventually
+          supporting features that would support this genre such as dialogue choice
+          conditions and dialogue tags.
+        nextNode:
+          rid: 7965224264890581007
+    - rid: 7965224264890581007
+      type: {class: ResponseNode, ns: , asm: Assembly-CSharp}
+      data:
+        EditorId: OtherPlansContinued
+        pos: {x: 3777.7505, y: 994.7501}
+        textValue: I am also considering adding "Speaker" data so that designers
+          can set the speaker of a response or line of dialogue, which can later
+          be used by the Dialogue Controller and View
+        nextNode:
+          rid: 7965224264890581008
+    - rid: 7965224264890581008
+      type: {class: ResponseNode, ns: , asm: Assembly-CSharp}
+      data:
+        EditorId: ControllerAndViewBranch
+        pos: {x: 4299.8506, y: 1025.8}
+        textValue: Speaking of both of those, I highly recommend configuring and
+          customizing them to better suit the needs of your project and game. I've
+          included example controllers and views with this project
+        nextNode:
+          rid: 7965224264890581009
+    - rid: 7965224264890581009
+      type: {class: ResponseNode, ns: , asm: Assembly-CSharp}
+      data:
+        EditorId: AnyMoreInfo
+        pos: {x: 4833.45, y: 1110.9001}
+        textValue: Is there anything else you'd like to ask?
+        nextNode:
+          rid: 7965224264890581010
+    - rid: 7965224264890581010
+      type: {class: ChoiceNode, ns: , asm: Assembly-CSharp}
+      data:
+        EditorId: FinalBranch
+        pos: {x: 5565.3374, y: 1007.42755}
+        choices:
+        - rid: 7965224264890581011
+        - rid: 7965224264890581012
+    - rid: 7965224264890581011
+      type: {class: DialogueChoice, ns: , asm: Assembly-CSharp}
+      data:
+        nextNode:
+          rid: 7965224264890580992
+        hidden: 0
+        ChoiceText: I'd like to start again from the beginning of this conversation
+        conditionalList:
+          rid: -2
+    - rid: 7965224264890581012
+      type: {class: DialogueChoice, ns: , asm: Assembly-CSharp}
+      data:
+        nextNode:
+          rid: 7965224264890581013
+        hidden: 0
+        ChoiceText: Goodbye!
+        conditionalList:
+          rid: -2
+    - rid: 7965224264890581013
+      type: {class: ResponseNode, ns: , asm: Assembly-CSharp}
+      data:
+        EditorId: ExitNodeGoodbye
+        pos: {x: 6121, y: 1017}
+        textValue: Goodbye! I hope this project can be of assistance to you somehow!
+        nextNode:
+          rid: -2

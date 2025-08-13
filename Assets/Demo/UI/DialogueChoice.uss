@@ -1,8 +1,14 @@
 .ChoiceContainer {
     flex-direction: row;
+    align-items: center;
+    padding-top: 0%;
+    padding-bottom: 0;
+    padding-right: 0%;
+    padding-left: 0%;
 }
-
 
 .ChoiceText {
     flex-grow: 1;
+    justify-content: space-between;
+    -unity-text-align: middle-left;
 }

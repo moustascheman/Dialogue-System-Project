@@ -275,7 +275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 796f28035b1690842874dc131b1a2e40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  convoAsset: {fileID: 11400000, guid: 4dc69e24ddc5bb0418a453c947e671cc, type: 2}
+  convoAsset: {fileID: 11400000, guid: 77e631fb1269d4e479403759b5daa098, type: 2}
   DialogueUI: {fileID: 0}
   choiceElement: {fileID: 9197481963319205126, guid: fe2c1fa1e2d840b4dbdb084f11923a5c, type: 3}
 --- !u!1660057539 &9223372036854775807

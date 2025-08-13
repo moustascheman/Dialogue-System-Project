@@ -169,7 +169,7 @@ public class DialogueView : MonoBehaviour
 
         ContinueButton.RegisterCallbackOnce<ClickEvent>(e =>
         {
-            Debug.Log("EXITING");
+            Application.Quit();
         });
 
     }

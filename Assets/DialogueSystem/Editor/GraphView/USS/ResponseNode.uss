@@ -10,6 +10,9 @@
 .ResponseText {
     width: 400px;
     height: 150px;
+    flex-wrap: wrap;
+    text-overflow: clip;
+    white-space: normal;
 }
 
 .ResponseText Label {
